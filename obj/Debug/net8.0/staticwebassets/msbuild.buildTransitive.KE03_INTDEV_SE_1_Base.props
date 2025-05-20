@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\KE03_INTDEV_SE_1_Base.props" />
+</Project>

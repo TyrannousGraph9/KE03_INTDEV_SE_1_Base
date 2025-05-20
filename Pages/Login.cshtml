@@ -1,0 +1,19 @@
+@page
+@model LoginModel
+@{
+    if (!string.IsNullOrEmpty(TempData["error"] as string))
+    {
+        <center><h3 style="color:red;"> Error: @TempData["error"] </h3></center>
+    }
+}
+<h1>@ViewData["Title"]</h1>
+
+    <center> <h2> Welkom bij Matrix Inc. Login hieronder met je naam in.</h2></center>
+
+<form method="post" class="login-form border rounded p-4 bg-light mx-auto mt-4" style="max-width: 350px;">
+    <div class="mb-3">
+        <label for="username" class="form-label fw-semibold">Username</label>
+        <input type="text" id="username" name="username" class="form-control" required>
+    </div>
+    <input type="submit" class="btn btn-primary w-100 fw-semibold" value="Login">
+</form>
