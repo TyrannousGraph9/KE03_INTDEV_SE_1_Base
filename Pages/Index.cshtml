@@ -7,66 +7,36 @@
     {
         Response.Redirect("/login");
     }
+    TempData.Keep("username");
     string username = (string)TempData["username"];
     ViewData["Title"] = "Home page";
 }
 
-<table class="table">
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Klantenoverzicht</h2>
-
-            @if (String.IsNullOrEmpty(username))
-            {
-                <h3>Welkom, @username</h3>
-            }
-            else
-            {
-                Redirect("/login");
-            }
-
-        </div>
-    </div>
-</table>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Klant</th>
-            <th>Aantal Orders</th>
-        </tr>
-    </thead>
-    @foreach (var c in Model.Customers)
-    {        
-        <tr>
-            <td>@Html.DisplayName(c.Name)</td>
-            <td>@Html.DisplayName(c.Orders.Count.ToString())</td>        
-        </tr>
-    }
-</table>
+<div class="matrix-header text-center my-5">
+    <h1 class="display-4 text-success matrix-glow">Welkom in de Matrix, @username!</h1>
+    <h2 class="display-5 text-success matrix-glow-small">Matrix Inc. Webshop Portaal</h2>
+</div>
 
 <div class="container">
-    <h2>Productenoverzicht</h2>
-    <div class="row">
-        @foreach (var p in Model.Products)
-        {
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow-sm">
-<img src="@(p.Image != null ? $"data:image/png;base64,{Convert.ToBase64String(p.Image)}" : "placeholder.png")" class="card-img-top" alt="...">
-                    <div class="card-body d-flex flex-column justify-content-between">
-                        <h5 class="card-title">@p.Name</h5>
-                        <p class="card-text">
-                            <span class="badge bg-primary fs-6">@p.Price.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("nl-NL"))</span>
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <form method="post" asp-page-handler="AddToCart">
-                            <input type="hidden" name="productId" value="@p.Id" />
-                            <button type="submit" class="btn btn-primary">Voeg toe aan winkelwagentje</button>
-                        </form>
-                    </div>
+    <div class="row justify-content-center align-items-center mt-5">
+        <div class="col-md-5 d-flex justify-content-end">
+            <div class="card matrix-card shadow-lg w-100">
+                <div class="card-body">
+                    <h2 class="card-title">Producten bekijken</h2>
+                    <p class="card-text text-light">Ontdek ons assortiment en bestel eenvoudig jouw favoriete producten.</p>
+                    <a class="btn btn-success fw-bold px-4 py-2" asp-page="/productenoverzicht">Bekijk producten</a>
                 </div>
             </div>
-        }
+        </div>
+        <div class="col-md-2 d-none d-md-block"></div>
+        <div class="col-md-5 d-flex justify-content-start">
+            <div class="card matrix-card shadow-lg w-100">
+                <div class="card-body">
+                    <h2 class="card-title">Bestellingen bekijken</h2>
+                    <p class="card-text text-light">Bekijk hier jouw eerdere bestellingen en volg de status.</p>
+                    <a class="btn btn-success fw-bold px-4 py-2" asp-page="/bestellingoverzicht">Bekijk bestellingen</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

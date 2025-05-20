@@ -1,0 +1,14 @@
+@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Uitgelogd";
+}
+    <div class="card shadow-sm p-4 mx-auto" style="max-width: 400px; background-color: #1a1a1a; border: 1px solid #0f0;">
+        <h2 class="mb-3" style="color: #0f0; font-family: 'Courier New', Courier, monospace;">U bent uitgelogd</h2>
+        <p class="mb-4" style="color: #bada55; font-family: 'Courier New', Courier, monospace;">
+            U bent succesvol uitgelogd. Klik hieronder om opnieuw in te loggen.
+        </p>
+        <a href="/login" class="btn btn-success" style="background-color: #0f0; color: #1a1a1a; border-color: #0f0; font-weight: bold;">
+            Inloggen
+        </a>
+    </div>

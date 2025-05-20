@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "K8QuRmCwUbRIv1nmhLREMUGgnJfaphLY0U5F/cYwscg=",
+  "Hash": "Htuf4SE6WH278Pm51Ia5KkBPhKfMiwacfK568+S6Wqw=",
   "Source": "KE03_INTDEV_SE_1_Base",
   "BasePath": "_content/KE03_INTDEV_SE_1_Base",
   "Mode": "Default",
@@ -31,8 +31,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "qaex55zu72",
-      "Integrity": "os9GzK6YWStrjD/erKy15jDv63RqMsEIAqQPEDAe55w=",
+      "Fingerprint": "kk7qt0ld6l",
+      "Integrity": "LIqW0ugRWZWhneb2q+i2Wb2H20cl7i3jskXgJ6RwiVI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\niels\\Desktop\\School-blok4-it1\\project\\KE03_INTDEV_SE_1_Base\\obj\\Debug\\net8.0\\scopedcss\\bundle\\KE03_INTDEV_SE_1_Base.styles.css"
@@ -52,11 +52,32 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "qaex55zu72",
-      "Integrity": "os9GzK6YWStrjD/erKy15jDv63RqMsEIAqQPEDAe55w=",
+      "Fingerprint": "kk7qt0ld6l",
+      "Integrity": "LIqW0ugRWZWhneb2q+i2Wb2H20cl7i3jskXgJ6RwiVI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\niels\\Desktop\\School-blok4-it1\\project\\KE03_INTDEV_SE_1_Base\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\KE03_INTDEV_SE_1_Base.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\niels\\Desktop\\School-blok4-it1\\project\\KE03_INTDEV_SE_1_Base\\wwwroot\\css\\main.css",
+      "SourceId": "KE03_INTDEV_SE_1_Base",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\niels\\Desktop\\School-blok4-it1\\project\\KE03_INTDEV_SE_1_Base\\wwwroot\\",
+      "BasePath": "_content/KE03_INTDEV_SE_1_Base",
+      "RelativePath": "css/main#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "291ooi7nio",
+      "Integrity": "qhOFh/ufAd+NRkSkgDd1tacDbKRxgFUfiJuakPVgVtM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\main.css"
     },
     {
       "Identity": "C:\\Users\\niels\\Desktop\\School-blok4-it1\\project\\KE03_INTDEV_SE_1_Base\\wwwroot\\css\\site.css",
@@ -1321,6 +1342,88 @@
   ],
   "Endpoints": [
     {
+      "Route": "css/main.291ooi7nio.css",
+      "AssetFile": "C:\\Users\\niels\\Desktop\\School-blok4-it1\\project\\KE03_INTDEV_SE_1_Base\\wwwroot\\css\\main.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1145"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"qhOFh/ufAd+NRkSkgDd1tacDbKRxgFUfiJuakPVgVtM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 11:25:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "291ooi7nio"
+        },
+        {
+          "Name": "label",
+          "Value": "css/main.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-qhOFh/ufAd+NRkSkgDd1tacDbKRxgFUfiJuakPVgVtM="
+        }
+      ]
+    },
+    {
+      "Route": "css/main.css",
+      "AssetFile": "C:\\Users\\niels\\Desktop\\School-blok4-it1\\project\\KE03_INTDEV_SE_1_Base\\wwwroot\\css\\main.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1145"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"qhOFh/ufAd+NRkSkgDd1tacDbKRxgFUfiJuakPVgVtM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 11:25:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-qhOFh/ufAd+NRkSkgDd1tacDbKRxgFUfiJuakPVgVtM="
+        }
+      ]
+    },
+    {
       "Route": "css/site.c2tiyv64ts.css",
       "AssetFile": "C:\\Users\\niels\\Desktop\\School-blok4-it1\\project\\KE03_INTDEV_SE_1_Base\\wwwroot\\css\\site.css",
       "Selectors": [],
@@ -1577,7 +1680,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1139"
+          "Value": "2791"
         },
         {
           "Name": "Content-Type",
@@ -1585,11 +1688,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"os9GzK6YWStrjD/erKy15jDv63RqMsEIAqQPEDAe55w=\""
+          "Value": "\"LIqW0ugRWZWhneb2q+i2Wb2H20cl7i3jskXgJ6RwiVI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 07:34:24 GMT"
+          "Value": "Tue, 20 May 2025 11:04:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1599,12 +1702,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-os9GzK6YWStrjD/erKy15jDv63RqMsEIAqQPEDAe55w="
+          "Value": "sha256-LIqW0ugRWZWhneb2q+i2Wb2H20cl7i3jskXgJ6RwiVI="
         }
       ]
     },
     {
-      "Route": "KE03_INTDEV_SE_1_Base.qaex55zu72.bundle.scp.css",
+      "Route": "KE03_INTDEV_SE_1_Base.kk7qt0ld6l.bundle.scp.css",
       "AssetFile": "C:\\Users\\niels\\Desktop\\School-blok4-it1\\project\\KE03_INTDEV_SE_1_Base\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\KE03_INTDEV_SE_1_Base.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1614,7 +1717,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1139"
+          "Value": "2791"
         },
         {
           "Name": "Content-Type",
@@ -1622,11 +1725,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"os9GzK6YWStrjD/erKy15jDv63RqMsEIAqQPEDAe55w=\""
+          "Value": "\"LIqW0ugRWZWhneb2q+i2Wb2H20cl7i3jskXgJ6RwiVI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 07:34:24 GMT"
+          "Value": "Tue, 20 May 2025 11:04:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1636,7 +1739,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "qaex55zu72"
+          "Value": "kk7qt0ld6l"
         },
         {
           "Name": "label",
@@ -1644,12 +1747,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-os9GzK6YWStrjD/erKy15jDv63RqMsEIAqQPEDAe55w="
+          "Value": "sha256-LIqW0ugRWZWhneb2q+i2Wb2H20cl7i3jskXgJ6RwiVI="
         }
       ]
     },
     {
-      "Route": "KE03_INTDEV_SE_1_Base.qaex55zu72.styles.css",
+      "Route": "KE03_INTDEV_SE_1_Base.kk7qt0ld6l.styles.css",
       "AssetFile": "C:\\Users\\niels\\Desktop\\School-blok4-it1\\project\\KE03_INTDEV_SE_1_Base\\obj\\Debug\\net8.0\\scopedcss\\bundle\\KE03_INTDEV_SE_1_Base.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1659,7 +1762,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1139"
+          "Value": "2791"
         },
         {
           "Name": "Content-Type",
@@ -1667,11 +1770,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"os9GzK6YWStrjD/erKy15jDv63RqMsEIAqQPEDAe55w=\""
+          "Value": "\"LIqW0ugRWZWhneb2q+i2Wb2H20cl7i3jskXgJ6RwiVI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 07:34:24 GMT"
+          "Value": "Tue, 20 May 2025 11:04:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1681,7 +1784,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "qaex55zu72"
+          "Value": "kk7qt0ld6l"
         },
         {
           "Name": "label",
@@ -1689,7 +1792,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-os9GzK6YWStrjD/erKy15jDv63RqMsEIAqQPEDAe55w="
+          "Value": "sha256-LIqW0ugRWZWhneb2q+i2Wb2H20cl7i3jskXgJ6RwiVI="
         }
       ]
     },
@@ -1704,7 +1807,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1139"
+          "Value": "2791"
         },
         {
           "Name": "Content-Type",
@@ -1712,11 +1815,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"os9GzK6YWStrjD/erKy15jDv63RqMsEIAqQPEDAe55w=\""
+          "Value": "\"LIqW0ugRWZWhneb2q+i2Wb2H20cl7i3jskXgJ6RwiVI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 07:34:24 GMT"
+          "Value": "Tue, 20 May 2025 11:04:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1726,7 +1829,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-os9GzK6YWStrjD/erKy15jDv63RqMsEIAqQPEDAe55w="
+          "Value": "sha256-LIqW0ugRWZWhneb2q+i2Wb2H20cl7i3jskXgJ6RwiVI="
         }
       ]
     },

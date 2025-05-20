@@ -2,7 +2,11 @@
   "Files": [
     {
       "Id": "C:\\Users\\niels\\Desktop\\School-blok4-it1\\project\\KE03_INTDEV_SE_1_Base\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\KE03_INTDEV_SE_1_Base.bundle.scp.css",
-      "PackagePath": "staticwebassets\\KE03_INTDEV_SE_1_Base.qaex55zu72.bundle.scp.css"
+      "PackagePath": "staticwebassets\\KE03_INTDEV_SE_1_Base.kk7qt0ld6l.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\niels\\Desktop\\School-blok4-it1\\project\\KE03_INTDEV_SE_1_Base\\wwwroot\\css\\main.css",
+      "PackagePath": "staticwebassets\\css\\main.css"
     },
     {
       "Id": "C:\\Users\\niels\\Desktop\\School-blok4-it1\\project\\KE03_INTDEV_SE_1_Base\\wwwroot\\css\\site.css",

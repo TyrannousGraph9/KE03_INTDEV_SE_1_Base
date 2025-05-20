@@ -1,0 +1,67 @@
+@page
+@model productenoverzichtModel
+@{
+    ViewData["Title"] = "Productenoverzicht";
+
+    if (string.IsNullOrEmpty(TempData["username"] as string))
+    {
+        Response.Redirect("/login");
+    }
+    TempData.Keep("username");
+}
+<div class="container py-4">
+    <h2 class="matrix-header text-center mb-5">Productenoverzicht</h2>
+
+    <h3 class="text-center mb-4">Producten</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+        @foreach (var p in Model.Products)
+        {
+            <div class="col h-100">
+                <div class="card matrix-card h-100 shadow d-flex flex-column">
+                    <div class="matrix-img-wrapper mb-3 text-center" style="padding: 1rem;">
+                        @{
+                            string imgSrc = "/images/no-image.png"; // Default image path
+                            if (p.Image is byte[] imgBytes)
+                            {
+                                imgSrc = $"data:image/png;base64,{Convert.ToBase64String(imgBytes)}";
+                            }
+                        }
+                        <img src="@imgSrc"
+                             class="card-img-top matrix-img img-fluid rounded shadow-sm"
+                             alt="@p.Name"
+                             style="height:180px; width:100%; object-fit:contain; background:linear-gradient(135deg,#0fffc1 0%,#7e5fff 100%); border:3px solid #7e5fff;" />
+                    </div>
+                    <div class="card-body d-flex flex-column justify-content-between flex-grow-1" style="min-height: 180px;">
+                        <h5 class="card-title">@p.Name</h5>
+                        <p class="card-text flex-grow-1">@p.Description</p>
+                        <span class="btn btn-success w-100 disabled mb-2" tabindex="-1" aria-disabled="true">
+                            @p.Price.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("nl-NL"))
+                        </span> 
+                    </div>
+                    <div class="card-footer border-top-0 bg-transparent mt-auto">
+                        <form method="post" asp-page-handler="AddToCart">
+                            <input type="hidden" name="productId" value="@p.Id" />
+                            <button type="submit" class="btn btn-success w-100">Voeg toe aan winkelwagentje</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <h3 class="text-center mb-4">Onderdelen</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var pa in Model.Parts)
+        {
+            <div class="col">
+                <div class="card matrix-card h-100 shadow">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <h5 class="card-title">@pa.Name</h5>
+                        <p class="card-text">@pa.Description</p>
+                        <p class="card-text text-warning">Dit is nog niet te bestellen.</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

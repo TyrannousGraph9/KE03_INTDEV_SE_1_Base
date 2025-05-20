@@ -1,0 +1,57 @@
+
+@page
+@using System
+@model BestellingoverzichtModel
+@{
+    if (string.IsNullOrEmpty(TempData["username"] as string))
+    {
+        Response.Redirect("/login");
+    }
+    TempData.Keep("username");
+    string username = (string)TempData["username"];
+    ViewData["Title"] = "Bestellingsoverzicht";
+}
+
+<table class="table">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Klantenoverzicht</h2>
+
+            @if (String.IsNullOrEmpty(username))
+            {
+                <h3>Welkom, @username</h3>
+            }
+            else
+            {
+                Redirect("/login");
+            }
+
+        </div>
+    </div>
+</table>
+
+<table class="table table-dark table-striped" style="background-color: #111; color: #0f0; font-family: 'Courier New', Courier, monospace;">
+    <thead>
+        <tr>
+            <th style="color: #0f0;">Klant</th>
+            <th style="color: #0f0;">Aantal Producten</th>
+            <th style="color: #0f0;">Producten</th>
+            <th style="color: #0f0;">Order Datum</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var o in Model.OrderDataForCustomer)
+    {
+        <tr>
+            <td style="color: #0f0;">@o.Customer.Name</td>
+            <td style="color: #0f0;">@o.Products.Count</td>
+            <td style="color: #0f0;"></td>
+                @foreach(var p in o.Products)
+                {
+                    <span>@p.Name<br /></span>
+                }
+            <td style="color: #0f0;">@o.OrderDate.ToString("yyyy-MM-dd")</td>
+        </tr>
+    }
+    </tbody>
+</table>

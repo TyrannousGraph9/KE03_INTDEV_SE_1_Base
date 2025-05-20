@@ -1,42 +1,53 @@
-﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
+﻿a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+  font-family: 'Courier New', Courier, monospace;
+  color: #00ff41 !important;
+  text-shadow: 0 0 5px #00ff41;
 }
 
 a {
-  color: #0077cc;
+  color: #00ff41;
+  text-shadow: 0 0 4px #00ff41;
+  font-family: 'Share Tech Mono', monospace;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+  color: #000;
+  background-color: #00ff41;
+  border-color: #003300;
+  font-family: 'Share Tech Mono', monospace;
+  text-shadow: 0 0 4px #00ff41;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+  color: #000;
+  background-color: #00ff41;
+  border-color: #003300;
+  font-family: 'Share Tech Mono', monospace;
+  text-shadow: 0 0 4px #00ff41;
 }
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid #003300;
 }
 .border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #003300;
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 255, 65, 0.15);
 }
 
 button.accept-policy {
   font-size: 1rem;
   line-height: inherit;
+  font-family: 'Share Tech Mono', monospace;
+  background: #000;
+  color: #00ff41;
+  border: 1px solid #003300;
+  text-shadow: 0 0 4px #00ff41;
 }
 
 .footer {
@@ -45,4 +56,56 @@ button.accept-policy {
   width: 100%;
   white-space: nowrap;
   line-height: 60px;
+  background: rgba(0,0,0,0.95);
+  color: #00ff41;
+  font-family: 'Courier New', Courier, monospace;
+  text-shadow: 0 0 5px #00ff41;
+  border-top: 1px solid #00ff41;
+  box-shadow: 0 0 20px #00ff41;
+}
+
+body {
+  background: #0f2027;
+  color: #00ff41;
+  font-family: 'Courier New', Courier, monospace;
+  min-height: 100vh;
+  position: relative;
+}
+
+.navbar, .footer {
+  background: rgba(0,0,0,0.95);
+  box-shadow: 0 0 20px #00ff41;
+}
+
+.navbar-brand, .nav-link, .footer, .navbar span {
+  color: #00ff41 !important;
+  font-family: 'Courier New', Courier, monospace;
+  text-shadow: 0 0 5px #00ff41;
+}
+
+.nav-link:hover, .navbar-brand:hover {
+  color: #fff !important;
+  text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41;
+}
+
+main {
+  background: rgba(0,0,0,0.85);
+  border-radius: 10px;
+  padding: 2rem;
+  margin-top: 2rem;
+  box-shadow: 0 0 30px #00ff41;
+}
+
+/* Optional: Matrix digital rain effect */
+.matrix-rain {
+  pointer-events: none;
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 0;
+  opacity: 0.2;
+}
+
+header, .container, footer {
+  position: relative;
+  z-index: 1;
 }

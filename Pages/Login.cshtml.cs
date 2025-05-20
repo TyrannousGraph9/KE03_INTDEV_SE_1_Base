@@ -20,6 +20,7 @@ namespace KE03_INTDEV_SE_1_Base.Pages
         public void OnGet()
         {
             Customers = _customerRepository.GetAllCustomers().ToList();
+            TempData.Clear();
         }
 
         public IActionResult OnPost()
@@ -32,7 +33,7 @@ namespace KE03_INTDEV_SE_1_Base.Pages
                 if (customer.Name == username)
                 {
                     TempData["username"] = username;
-
+                    TempData.Keep("username");
                     return Redirect("/Index");
                 }
             }

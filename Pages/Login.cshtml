@@ -1,19 +1,25 @@
 @page
 @model LoginModel
 @{
-    if (!string.IsNullOrEmpty(TempData["error"] as string))
-    {
-        <center><h3 style="color:red;"> Error: @TempData["error"] </h3></center>
-    }
+    ViewData["Title"] = "Login";
 }
-<h1>@ViewData["Title"]</h1>
-
-    <center> <h2> Welkom bij Matrix Inc. Login hieronder met je naam in.</h2></center>
-
-<form method="post" class="login-form border rounded p-4 bg-light mx-auto mt-4" style="max-width: 350px;">
-    <div class="mb-3">
-        <label for="username" class="form-label fw-semibold">Username</label>
-        <input type="text" id="username" name="username" class="form-control" required>
-    </div>
-    <input type="submit" class="btn btn-primary w-100 fw-semibold" value="Login">
-</form>
+<div class="card shadow-sm p-4 mx-auto" style="max-width: 400px; background-color: #1a1a1a; border: 1px solid #0f0;">
+    <h2 class="mb-3 text-center" style="color: #0f0; font-family: 'Courier New', Courier, monospace;">Matrix Inc. Login</h2>
+    <p class="mb-4 text-center" style="color: #bada55; font-family: 'Courier New', Courier, monospace;">
+        Welkom bij Matrix Inc.<br />Log hieronder in met je naam.
+    </p>
+    @if (!string.IsNullOrEmpty(TempData["error"] as string))
+    {
+        <div class="alert alert-danger text-center py-2" style="background: #2a2a2a; color: #ff4444; border: 1px solid #ff4444; font-family: 'Courier New', Courier, monospace;">
+            Error: @TempData["error"]
+        </div>
+    }
+    <form method="post" class="mt-3">
+        <div class="mb-3">
+            <label for="username" class="form-label fw-semibold" style="color: #0f0; font-family: 'Courier New', Courier, monospace;">Username</label>
+            <input type="text" id="username" name="username" class="form-control" required style="background: #222; color: #0f0; border: 1px solid #0f0; font-family: 'Courier New', Courier, monospace;">
+        </div>
+        <input type="submit" class="btn btn-success w-100 fw-semibold" value="Login"
+               style="background-color: #0f0; color: #1a1a1a; border-color: #0f0; font-weight: bold; font-family: 'Courier New', Courier, monospace;">
+    </form>
+</div>
