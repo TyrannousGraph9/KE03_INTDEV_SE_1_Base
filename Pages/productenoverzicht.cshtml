@@ -39,8 +39,9 @@
                         </span> 
                     </div>
                     <div class="card-footer border-top-0 bg-transparent mt-auto">
-                        <form method="post" asp-page-handler="AddToCart">
+                        <form method="post">
                             <input type="hidden" name="productId" value="@p.Id" />
+                            <input type="number" name="amount" value="1" min="1" class="form-control mb-2" required />
                             <button type="submit" class="btn btn-success w-100">Voeg toe aan winkelwagentje</button>
                         </form>
                     </div>
