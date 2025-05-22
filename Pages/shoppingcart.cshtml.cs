@@ -1,7 +1,9 @@
+using DataAccessLayer;
 using DataAccessLayer.Interfaces;
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+
 
 namespace KE03_INTDEV_SE_1_Base.Pages
 {
@@ -11,12 +13,16 @@ namespace KE03_INTDEV_SE_1_Base.Pages
         public IList<Product> Products { get; set; }
 
 
-
+        private readonly MatrixIncDbContext _context;
         public List<(int ProductId, int Amount, decimal Price, string ProductName)> ShoppingCartContents { get; set; } = new List<(int, int, decimal, string)>();
-        public ShoppingCartModel(IProductRepository productRepository)
+
+        
+        
+        public ShoppingCartModel(IProductRepository productRepository, MatrixIncDbContext context)
         {
             _productRepository = productRepository;
             Products = new List<Product>();
+            _context = context;
         }
 
         public void OnGet()
@@ -36,17 +42,52 @@ namespace KE03_INTDEV_SE_1_Base.Pages
                         if (product != null)
                         {
                             ShoppingCartContents.Add((productId, amount, product.Price, product.Name));  
-                            Console.WriteLine(ShoppingCartContents);
                         }
                     }
                 }
-
             }
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
-            
+            // opslaan normale order 
+            if (!TempData.TryGetValue("username", out var usernameObj) || usernameObj is null)
+            {
+                return RedirectToPage("Login");
+            }
+            var customer = _context.Customers.FirstOrDefault(c => c.Name == usernameObj.ToString());
+            if (customer == null)
+            {
+                return RedirectToPage("Login");
+            }
+
+            // Create new order
+            var order = new Order
+            {
+                OrderDate = DateTime.Now,
+                CustomerId = customer.Id,
+                Customer = customer
+            };
+
+            // Add products from shopping cart
+            foreach (var item in ShoppingCartContents)
+            {
+                var product = _context.Products.FirstOrDefault(p => p.Id == item.ProductId);
+                if (product != null)
+                {
+                    order.Products.Add(product);
+                }
+            }
+
+            _context.Orders.Add(order);
+
+
+            _context.SaveChanges();
+
+            // Optionally clear the shopping cart cookie
+            Response.Cookies.Delete("shoppingcart");
+
+            return RedirectToPage("bestellinggeplaatst");
         }
     }
 }
