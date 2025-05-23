@@ -79,7 +79,6 @@ namespace KE03_INTDEV_SE_1_Base.Pages
                 }
             }
 
-            // Create new order
             var order = new Order
             {
                 OrderDate = DateTime.Now,
@@ -88,7 +87,7 @@ namespace KE03_INTDEV_SE_1_Base.Pages
             };
 
             _context.Orders.Add(order);
-            await _context.SaveChangesAsync(); // Save first to generate the Order.Id
+            await _context.SaveChangesAsync(); 
 
             foreach(var item in ShoppingCartContents)
             {
@@ -105,8 +104,8 @@ namespace KE03_INTDEV_SE_1_Base.Pages
                         $"INSERT INTO OrderProducts (OrderId, ProductId, Amount) VALUES ({relationship.OrderId}, {relationship.ProductId}, {relationship.Amount})");
                 }
             }
-            
-            await _context.SaveChangesAsync(); // Save all changes
+
+            await _context.SaveChangesAsync();
 
             Response.Cookies.Delete("shoppingcart");
             return RedirectToPage("bestellinggeplaatst");

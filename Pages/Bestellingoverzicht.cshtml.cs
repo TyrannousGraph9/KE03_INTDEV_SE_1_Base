@@ -63,7 +63,7 @@ namespace KE03_INTDEV_SE_1_Base.Pages
                 return;
             }
 
-            // Get orders with related data using EF Core
+
             var orders = _context.Orders
                 .Include(o => o.Customer)
                 .Where(o => o.Customer.Name == Username)
@@ -73,7 +73,7 @@ namespace KE03_INTDEV_SE_1_Base.Pages
             {
                 var orderDetails = new OrderWithDetails { Order = order };
                 
-                // Get order products details from the junction table using FromSql
+     
                 var productDetails = _context.Database
                     .SqlQuery<OrderProductQueryResult>($@"
                         SELECT 

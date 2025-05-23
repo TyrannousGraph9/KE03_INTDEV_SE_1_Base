@@ -20,7 +20,7 @@
                 <div class="card matrix-card h-100 shadow d-flex flex-column">
                     <div class="matrix-img-wrapper mb-3 text-center" style="padding: 1rem;">
                         @{
-                            string imgSrc = "/images/no-image.png"; // Default image path
+                            string imgSrc = "/images/no-image.png"; // niet nodig
                             if (p.Image is byte[] imgBytes)
                             {
                                 imgSrc = $"data:image/png;base64,{Convert.ToBase64String(imgBytes)}";

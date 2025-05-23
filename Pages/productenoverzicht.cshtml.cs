@@ -96,7 +96,6 @@ namespace KE03_INTDEV_SE_1_Base.Pages
             }
             else
             {
-                // Create a new cookie
                 Response.Cookies.Append(cookieName, $"{productId}:{amount}");
             }
 
