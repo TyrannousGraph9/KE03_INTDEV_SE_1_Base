@@ -3,6 +3,7 @@ using DataAccessLayer.Interfaces;
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace KE03_INTDEV_SE_1_Base.Pages
@@ -10,14 +11,10 @@ namespace KE03_INTDEV_SE_1_Base.Pages
     public class ShoppingCartModel : PageModel
     {
         private readonly IProductRepository _productRepository;
-        public IList<Product> Products { get; set; }
-
-
         private readonly MatrixIncDbContext _context;
+        public IList<Product> Products { get; set; }
         public List<(int ProductId, int Amount, decimal Price, string ProductName)> ShoppingCartContents { get; set; } = new List<(int, int, decimal, string)>();
 
-        
-        
         public ShoppingCartModel(IProductRepository productRepository, MatrixIncDbContext context)
         {
             _productRepository = productRepository;
@@ -82,7 +79,6 @@ namespace KE03_INTDEV_SE_1_Base.Pages
                 }
             }
 
-
             // Create new order
             var order = new Order
             {
@@ -90,8 +86,27 @@ namespace KE03_INTDEV_SE_1_Base.Pages
                 CustomerId = customer.Id,
                 Customer = customer
             };
+
             _context.Orders.Add(order);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(); // Save first to generate the Order.Id
+
+            foreach(var item in ShoppingCartContents)
+            {
+                var product = _productRepository.GetProductById(item.ProductId);
+                if (product != null)
+                {
+                    var relationship = new
+                    {
+                        OrderId = order.Id,
+                        ProductId = item.ProductId,
+                        Amount = item.Amount
+                    };
+                    await _context.Database.ExecuteSqlInterpolatedAsync(
+                        $"INSERT INTO OrderProducts (OrderId, ProductId, Amount) VALUES ({relationship.OrderId}, {relationship.ProductId}, {relationship.Amount})");
+                }
+            }
+            
+            await _context.SaveChangesAsync(); // Save all changes
 
             Response.Cookies.Delete("shoppingcart");
             return RedirectToPage("bestellinggeplaatst");
