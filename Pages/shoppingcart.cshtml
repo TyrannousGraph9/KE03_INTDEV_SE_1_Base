@@ -1,0 +1,50 @@
+@page
+@model ShoppingCartModel
+@{
+    ViewData["Title"] = "Winkelwagen";
+}
+<div class="container py-4">
+    <div class="card shadow-sm mx-auto" style="max-width: 700px; background-color: #1a1a1a; border: 1.5px solid #00ff41;">
+        <h2 class="mb-4 text-center" style="color: #00ff41; font-family: 'Courier New', Courier, monospace;">Winkelwagen</h2>
+
+        @if (Model.ShoppingCartContents != null && Model.ShoppingCartContents.Any())
+        {
+            <table class="table table-dark table-striped" style="background-color: #111; color: #00ff41; font-family: 'Courier New', Courier, monospace; border-radius: 8px;">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Prijs</th>
+                        <th>Aantal</th>
+                        <th>Subtotaal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ShoppingCartContents)
+                    {
+                        <tr>
+                            <td>@item.ProductName</td>
+                            <td>€@item.Price.ToString("0.00")</td>
+                            <td>@item.Amount</td>
+                            <td>€@((item.Price * item.Amount).ToString("0.00"))</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-end"><strong>Totaal:</strong></td>
+                        <td><strong>€ @Model.ShoppingCartContents.Sum(i => i.Price * i.Amount).ToString("0.00")</strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <form method="post">
+                <button type="submit" class="btn btn-success w-100 fw-bold" style="background-color: #00ff41; color: #1a1a1a; border-color: #00ff41; font-family: 'Courier New', Courier, monospace;">
+                    Bestel
+                </button>
+            </form>
+        }
+        else
+        {
+            <p class="text-center" style="color: #00ff41; font-family: 'Courier New', Courier, monospace;">Je winkelwagen is leeg.</p>
+        }
+    </div>
+</div>

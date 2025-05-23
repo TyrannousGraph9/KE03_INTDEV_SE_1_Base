@@ -1,6 +1,6 @@
-
 @page
 @using System
+@using KE03_INTDEV_SE_1_Base.Pages
 @model BestellingoverzichtModel
 @{
     if (string.IsNullOrEmpty(TempData["username"] as string))
@@ -8,50 +8,51 @@
         Response.Redirect("/login");
     }
     TempData.Keep("username");
-    string username = (string)TempData["username"];
     ViewData["Title"] = "Bestellingsoverzicht";
 }
 
-<table class="table">
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Klantenoverzicht</h2>
-
-            @if (String.IsNullOrEmpty(username))
-            {
-                <h3>Welkom, @username</h3>
-            }
-            else
-            {
-                Redirect("/login");
-            }
-
-        </div>
-    </div>
-</table>
-
-<table class="table table-dark table-striped" style="background-color: #111; color: #0f0; font-family: 'Courier New', Courier, monospace;">
-    <thead>
-        <tr>
-            <th style="color: #0f0;">Klant</th>
-            <th style="color: #0f0;">Aantal Producten</th>
-            <th style="color: #0f0;">Producten</th>
-            <th style="color: #0f0;">Order Datum</th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach (var o in Model.OrderDataForCustomer)
+<div class="container py-4">
+    <h2 class="text-center matrix-header mb-5">Bestellingsoverzicht</h2>
+    
+    @foreach (var orderDetail in Model.OrderDataForCustomer)
     {
-        <tr>
-            <td style="color: #0f0;">@o.Customer.Name</td>
-            <td style="color: #0f0;">@o.Products.Count</td>
-            <td style="color: #0f0;"></td>
-                @foreach(var p in o.Products)
-                {
-                    <span>@p.Name<br /></span>
-                }
-            <td style="color: #0f0;">@o.OrderDate.ToString("yyyy-MM-dd")</td>
-        </tr>
+        <div class="card matrix-card mb-4 shadow">
+            <div class="card-header bg-dark text-light d-flex justify-content-between align-items-center">
+                <span>Order Datum: @orderDetail.Order.OrderDate.ToString("dd-MM-yyyy")</span>
+                <span class="badge bg-success">Totaal: @orderDetail.TotalOrderPrice.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("nl-NL"))</span>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-dark table-striped mb-0" style="background-color: #111; color: #0f0; font-family: 'Courier New', monospace;">
+                        <thead>
+                            <tr>
+                                <th style="color: #0f0;">Product</th>
+                                <th style="color: #0f0;">Aantal</th>
+                                <th style="color: #0f0;">Prijs per stuk</th>
+                                <th style="color: #0f0;">Totaal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var product in orderDetail.ProductDetails)
+                            {
+                                <tr>
+                                    <td style="color: #0f0;">@product.ProductName</td>
+                                    <td style="color: #0f0;">@product.Amount</td>
+                                    <td style="color: #0f0;">@product.Price.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("nl-NL"))</td>
+                                    <td style="color: #0f0;">@product.TotalPrice.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("nl-NL"))</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     }
-    </tbody>
-</table>
+
+    @if (!Model.OrderDataForCustomer.Any())
+    {
+        <div class="alert alert-info text-center">
+            <p class="mb-0">Je hebt nog geen bestellingen geplaatst.</p>
+        </div>
+    }
+</div>

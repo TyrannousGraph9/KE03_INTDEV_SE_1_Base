@@ -21,6 +21,7 @@ namespace KE03_INTDEV_SE_1_Base
             builder.Services.AddScoped<IOrderRepository, OrderRepository>();
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<IPartRepository, PartRepository>();
+            builder.Services.AddScoped<IOrderProductRepository, OrderProductRepository>();
 
             // Add services to the container.
             builder.Services.AddRazorPages();

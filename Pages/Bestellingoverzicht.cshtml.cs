@@ -1,59 +1,103 @@
+using DataAccessLayer;
 using DataAccessLayer.Interfaces;
 using DataAccessLayer.Models;
-using DataAccessLayer.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace KE03_INTDEV_SE_1_Base.Pages
 {
     public class BestellingoverzichtModel : PageModel
     {   
-        
         private readonly IOrderRepository _orderRepository;
-        public IList<Order> Orders { get; set; }
-        public string Username { get; set; }
-
         private readonly IProductRepository _productRepository;
-        public IList<Product> Products { get; set; }
-
         private readonly ICustomerRepository _customerRepository;
-        public IList<Customer> Customers { get; set; }
+        private readonly MatrixIncDbContext _context;
+        
+        public IList<Order> Orders { get; set; } = new List<Order>();
+        public string Username { get; set; } = string.Empty;
+        public IList<Product> Products { get; set; } = new List<Product>();
+        public IList<Customer> Customers { get; set; } = new List<Customer>();
+        public List<OrderWithDetails> OrderDataForCustomer { get; set; } = new List<OrderWithDetails>();
 
-        public List<Order> OrderDataForCustomer { get; set; } = new List<Order>();
-
-        public BestellingoverzichtModel(IOrderRepository orderRepository, IProductRepository productRepository, ICustomerRepository customerRepository)
+        public class OrderProductQueryResult
         {
-            _productRepository = productRepository;
-            Products = new List<Product>();
-            _customerRepository = customerRepository;
-            Customers = new List<Customer>();
+            public int ProductId { get; set; }
+            public string Name { get; set; } = string.Empty;
+            public decimal Price { get; set; }
+            public int Amount { get; set; }
+        }
+
+        public class OrderWithDetails
+        {
+            public required Order Order { get; set; }
+            public List<OrderProductDetail> ProductDetails { get; set; } = new List<OrderProductDetail>();
+            public decimal TotalOrderPrice => ProductDetails.Sum(p => p.TotalPrice);
+        }
+
+        public class OrderProductDetail
+        {
+            public required string ProductName { get; set; }
+            public int Amount { get; set; }
+            public decimal Price { get; set; }
+            public decimal TotalPrice => Amount * Price;
+        }
+
+        public BestellingoverzichtModel(
+            IOrderRepository orderRepository, 
+            IProductRepository productRepository, 
+            ICustomerRepository customerRepository,
+            MatrixIncDbContext context)
+        {
             _orderRepository = orderRepository;
-            Orders = new List<Order>();
+            _productRepository = productRepository;
+            _customerRepository = customerRepository;
+            _context = context;
         }
 
         public void OnGet()
         {
-            Orders = _orderRepository.GetAllOrders().ToList();
             Username = TempData["username"]?.ToString() ?? string.Empty;
-            List<Order> orderDataForCustomer = new List<Order>();
-            for (int i = 0; i < Orders.Count; i++)
+            if (string.IsNullOrEmpty(Username))
             {
-                if (Orders[i].Customer != null && Orders[i].Customer.Name == Username)
-                {
-                    Orders[i].CustomerId = Orders[i].Customer.Id;
-                    orderDataForCustomer.Add(Orders[i]);
-                    Products = _productRepository.GetAllProducts().ToList();
-                    Customers = _customerRepository.GetAllCustomers().ToList();
-                    foreach (var product in Products)
-                    {
-                        if (Orders[i].Products.Contains(product))
-                        {
-                            Orders[i].Products.Add(product);
-                        }
-                    }
-                }
+                return;
             }
-            OrderDataForCustomer = orderDataForCustomer;
+
+            // Get orders with related data using EF Core
+            var orders = _context.Orders
+                .Include(o => o.Customer)
+                .Where(o => o.Customer.Name == Username)
+                .ToList();
+
+            foreach (var order in orders)
+            {
+                var orderDetails = new OrderWithDetails { Order = order };
+                
+                // Get order products details from the junction table using FromSql
+                var productDetails = _context.Database
+                    .SqlQuery<OrderProductQueryResult>($@"
+                        SELECT 
+                            p.Id as ProductId,
+                            p.Name,
+                            p.Price,
+                            op.Amount
+                        FROM OrderProducts op
+                        JOIN Products p ON p.Id = op.ProductId
+                        WHERE op.OrderId = {order.Id}")
+                    .ToList();
+
+                foreach (var detail in productDetails)
+                {
+                    orderDetails.ProductDetails.Add(new OrderProductDetail
+                    {
+                        ProductName = detail.Name,
+                        Amount = detail.Amount,
+                        Price = detail.Price
+                    });
+                }
+
+                OrderDataForCustomer.Add(orderDetails);
+            }
         }
     }
 }
